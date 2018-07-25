@@ -110,4 +110,21 @@ public class VegReviewsJPAMappingsTest {
 		
 	}
 	
+	@Test
+	public void shouldFindVeggiesForCategoryId() {
+		Category roots = categoryRepo.save(new Category("Root Veggies", "imgUrl", "blurb"));
+		long categoryId = roots.getId();
+		Category cruciferous = categoryRepo.save(new Category ("Cruciferous Vegetables", "imgUrl", "blurb"));
+		
+		Veggie carrots = veggieRepo.save(new Veggie("carrots", "imgUrl", "text", roots));
+		Veggie beets = veggieRepo.save(new Veggie("beets", "imgUrl", "text", roots));
+		Veggie broccoli = veggieRepo.save(new Veggie("broccoli", "imgUrl", "text", cruciferous));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Veggie>veggiesForCategory = veggieRepo.findByCategoryId(categoryId);
+		
+		assertThat(veggiesForCategory, containsInAnyOrder(carrots, beets));
+	}
 }
