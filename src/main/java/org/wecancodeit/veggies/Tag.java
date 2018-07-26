@@ -16,7 +16,7 @@ public class Tag {
 	
 	private String tagName;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="tags")
 	private Collection<Vegetable> veggies;
 	
 	public long getId() {

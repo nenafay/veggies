@@ -34,7 +34,7 @@ public class Vegetable {
 	private Collection<Tag> tags;
 	
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(mappedBy = "veggies")
 	private Collection<Recipe> recipes;
 	
 	public long getId() {
@@ -59,6 +59,10 @@ public class Vegetable {
 	
 	public Collection<Tag> getTags() {
 		return tags;	
+	}
+	
+	public Collection<Recipe> getRecipes(){
+		return recipes;
 	}
 	
 	protected Vegetable() {	
