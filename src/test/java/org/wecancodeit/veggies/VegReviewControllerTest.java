@@ -99,6 +99,7 @@ public class VegReviewControllerTest {
 		underTest.findAllCategories(model);
 		verify(model).addAttribute("categories", allCategories);
 	}
+	
 	@Test
 	public void shouldAddSingleTagToModel() throws TagNotFoundException{
 		long arbitraryTagId = 7;
@@ -106,5 +107,14 @@ public class VegReviewControllerTest {
 		
 		underTest.findOneTag(arbitraryTagId,model);
 		verify(model).addAttribute("tags", tag);
+	}
+	
+	@Test
+	public void shouldAddAllTagsToModel() {
+		Collection<Tag> allTags = Arrays.asList(tag, anotherTag);
+		when(tagRepo.findAll()).thenReturn(allTags);
+		
+		underTest.findAllTags(model);
+		verify(model).addAttribute("tags", allTags);
 	}
 }

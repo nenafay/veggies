@@ -69,8 +69,12 @@ public class VegReviewController {
 			model.addAttribute("tags", tag.get());
 			return("tag");
 		}
-		throw new TagNotFoundException() {
-			
-		}
+		throw new TagNotFoundException();
+	}
+	
+	@RequestMapping("/")
+	public String findAllTags(Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return("tags");
 	}
 }
