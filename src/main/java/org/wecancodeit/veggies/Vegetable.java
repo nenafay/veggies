@@ -82,7 +82,6 @@ public class Vegetable {
 		this.category = category;
 		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
-
 	
 	@Override
 	public int hashCode() {
