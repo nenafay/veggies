@@ -4,10 +4,12 @@ import java.util.Collection;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface VegetableRepository extends CrudRepository<Veggie, Long> {
+public interface VegetableRepository extends CrudRepository<Vegetable, Long> {
 
-	Collection<Veggie> findByCategory(Category category);
+	Collection<Vegetable> findByCategory(Category category);
 	
-	Collection<Veggie> findByCategoryId(long id);
+	Collection<Vegetable> findByCategoryId(long id);
+
+	Collection<Vegetable> findByTagsId(long tagId);
 
 }

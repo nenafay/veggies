@@ -1,13 +1,20 @@
 package org.wecancodeit.veggies;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Veggie {
+public class Vegetable {
 
 	@Id
 	@GeneratedValue
@@ -22,7 +29,13 @@ public class Veggie {
 	@ManyToOne
 	private Category category;
 
-	private String categoryName;
+	@JsonIgnore
+	@ManyToMany
+	private Collection<Tag> tags;
+	
+	@JsonIgnore
+	@ManyToMany
+	private Collection<Recipe> recipes;
 	
 	public long getId() {
 		return id;
@@ -41,20 +54,32 @@ public class Veggie {
 	}
 	
 	public String getCategoryName() {
-		return categoryName;
+		return category.getCategoryName();
 	}
 	
-	protected Veggie() {
-		
+	public Collection<Tag> getTags() {
+		return tags;	
 	}
 	
-	public Veggie(String veggieName, String imgUrl, String text, Category category) {
+	protected Vegetable() {	
+	}
+	
+	public Vegetable(String veggieName, String imgUrl, String text, Category category) {
 		this.veggieName = veggieName;
 		this.imgUrl = imgUrl;
 		this.text = text;
 		this.category = category;
 	}
+	
+	public Vegetable(String veggieName, String imgUrl, String text, Category category, Tag...tags) {
+		this.veggieName = veggieName;
+		this.imgUrl = imgUrl;
+		this.text = text;
+		this.category = category;
+		this.tags = new HashSet<>(Arrays.asList(tags));
+	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,12 +96,10 @@ public class Veggie {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Veggie other = (Veggie) obj;
+		Vegetable other = (Vegetable) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -29,6 +29,12 @@ public class VegReviewsJPAMappingsTest {
 	@Resource
 	private VegetableRepository veggieRepo;
 	
+	@Resource
+	private TagRepository tagRepo;
+	
+	@Resource
+	private RecipeRepository recipeRepo;
+	
 	@Test
 	public void shouldSaveAndLoadCategory() {
 		Category category = categoryRepo.save(new Category("category", "imgUrl", "blurb"));
@@ -59,14 +65,14 @@ public class VegReviewsJPAMappingsTest {
 		Category category = categoryRepo.save(new Category("category", "imgUrl", "blurb"));
 		categoryRepo.save(category);
 		
-		Veggie veggie = new Veggie("veggie name", "imgUrl", "text", category);
+		Vegetable veggie = new Vegetable("veggie name", "imgUrl", "text", category);
 		veggie = veggieRepo.save(veggie);
 		long veggieId = veggie.getId();
 		
 		entityManager.flush();
 		entityManager.clear();
 		
-		Optional<Veggie> result = veggieRepo.findById(veggieId);
+		Optional<Vegetable> result = veggieRepo.findById(veggieId);
 		veggie = result.get();
 		assertThat(veggie.getVeggieName(), is("veggie name"));
 	}
@@ -77,10 +83,10 @@ public class VegReviewsJPAMappingsTest {
 		categoryRepo.save(category);
 		long categoryId = category.getId();
 		
-		Veggie carrots = veggieRepo.save(new Veggie("carrots", "imgUrl", "text", category));
+		Vegetable carrots = veggieRepo.save(new Vegetable("carrots", "imgUrl", "text", category));
 		 veggieRepo.save(carrots);
 		 
-		Veggie peas = veggieRepo.save(new Veggie("peas", "imgUrl", "text", category));
+		Vegetable peas = veggieRepo.save(new Vegetable("peas", "imgUrl", "text", category));
 		veggieRepo.save(peas);
 		
 		
@@ -97,14 +103,14 @@ public class VegReviewsJPAMappingsTest {
 		Category roots = categoryRepo.save(new Category("Root Vegetables", "imgUrl", "blurb"));
 		Category cruciferous = categoryRepo.save(new Category ("Cruciferous Vegetables", "imgUrl", "blurb"));
 		
-		Veggie carrots = veggieRepo.save(new Veggie("carrots", "imgUrl", "text", roots));
-		Veggie beets = veggieRepo.save(new Veggie("beets", "imgUrl", "text", roots));
-		Veggie broccoli = veggieRepo.save(new Veggie("broccoli", "imgUrl", "text", cruciferous));
+		Vegetable carrots = veggieRepo.save(new Vegetable("carrots", "imgUrl", "text", roots));
+		Vegetable beets = veggieRepo.save(new Vegetable("beets", "imgUrl", "text", roots));
+		Vegetable broccoli = veggieRepo.save(new Vegetable("broccoli", "imgUrl", "text", cruciferous));
 		
 		entityManager.flush();
 		entityManager.clear();
 		
-		Collection<Veggie> veggiesForCategory = veggieRepo.findByCategory(roots);
+		Collection<Vegetable> veggiesForCategory = veggieRepo.findByCategory(roots);
 		
 		assertThat(veggiesForCategory, containsInAnyOrder(carrots, beets));
 		
@@ -116,15 +122,93 @@ public class VegReviewsJPAMappingsTest {
 		long categoryId = roots.getId();
 		Category cruciferous = categoryRepo.save(new Category ("Cruciferous Vegetables", "imgUrl", "blurb"));
 		
-		Veggie carrots = veggieRepo.save(new Veggie("carrots", "imgUrl", "text", roots));
-		Veggie beets = veggieRepo.save(new Veggie("beets", "imgUrl", "text", roots));
-		Veggie broccoli = veggieRepo.save(new Veggie("broccoli", "imgUrl", "text", cruciferous));
+		Vegetable carrots = veggieRepo.save(new Vegetable("carrots", "imgUrl", "text", roots));
+		Vegetable beets = veggieRepo.save(new Vegetable("beets", "imgUrl", "text", roots));
+		Vegetable broccoli = veggieRepo.save(new Vegetable("broccoli", "imgUrl", "text", cruciferous));
 		
 		entityManager.flush();
 		entityManager.clear();
 		
-		Collection<Veggie>veggiesForCategory = veggieRepo.findByCategoryId(categoryId);
+		Collection<Vegetable>veggiesForCategory = veggieRepo.findByCategoryId(categoryId);
 		
 		assertThat(veggiesForCategory, containsInAnyOrder(carrots, beets));
+	}
+	
+	@Test
+	public void shouldSaveAndLoadTags() {
+		Tag tag = tagRepo.save(new Tag("tag name"));
+		long tagId = tag.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Tag> result = tagRepo.findById(tagId);
+		tag = result.get();
+		assertThat(tag.getTagName(), is("tag name"));
+	}
+	
+	@Test
+	public void shouldGenerateTagId() {
+		Tag tag = tagRepo.save(new Tag("tag name"));
+		long tagId = tag.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		assertThat(tagId, is(greaterThan(0L)));
+	}
+	
+	@Test
+	public void shouldEstablishReviewToTagRelationship() {
+		Tag raw = tagRepo.save(new Tag("good eaten raw"));
+		Tag saucy = tagRepo.save(new Tag("great in sauces"));
+		
+		Category techFruit = categoryRepo.save(new Category
+				("technically fruit", "imgUrl", "blurb"));
+		
+		Vegetable tomato = veggieRepo.save(new Vegetable
+				("tomato", "imgUrl", "text", techFruit, raw, saucy));
+		long veggieId = tomato.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Vegetable> result = veggieRepo.findById(veggieId);
+		tomato = result.get();
+		assertThat(tomato.getTags(), containsInAnyOrder(raw, saucy));
+	}
+	
+	@Test
+	public void shouldFindVeggiesForTagId() {
+		Tag raw = tagRepo.save(new Tag("good eaten raw"));
+		long tagId = raw.getId();
+		
+		Category techFruit = categoryRepo.save(new Category
+				("technically fruit", "imgUrl", "blurb"));
+		
+		Vegetable tomato = veggieRepo.save(new Vegetable
+				("tomato", "imgUrl", "text", techFruit, raw));
+		Vegetable bellPepper = veggieRepo.save(new Vegetable
+				("bellPepper", "imgUrl", "text", techFruit, raw));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Vegetable> veggiesForTag = veggieRepo.findByTagsId(tagId);
+		
+		assertThat(veggiesForTag, containsInAnyOrder(tomato, bellPepper));
+	}
+	
+	@Test
+	public void shouldSaveAndLoadRecipes() {
+		Category roots = categoryRepo.save(new Category
+				("root vegetables", "imgUrl", "blurg"));
+		
+		Vegetable carrot = veggieRepo.save(new Vegetable
+				("Carrot", "imgUrl", "text", roots));
+		
+		Recipe recipe = recipeRepo.save(new Recipe("user name", "recipe title", "recipe", carrot));
+		
+		
 	}
 }

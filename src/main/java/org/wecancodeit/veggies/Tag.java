@@ -5,53 +5,33 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.ManyToMany;
 
 @Entity
-public class Category {
+public class Tag {
 	
 	@Id
 	@GeneratedValue
 	private long id;
 	
-	private String categoryName;
-	private String imgUrl;
-	private String blurb;
+	private String tagName;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "category")
+	@ManyToMany
 	private Collection<Vegetable> veggies;
-
+	
 	public long getId() {
 		return id;
 	}
-
-	public String getCategoryName() {
-		return categoryName;
+			
+	public String getTagName() {
+	return tagName;
 	}
 	
-	public String getImageUrl() {
-		return imgUrl;
-	}
-	
-	public String getBlurb() {
-		return blurb;
-	}
-	
-	public Collection<Vegetable> getVeggies() {
-		return veggies;
-	}
-	
-	protected Category() {
-		
+	protected Tag() {
 	}
 
-	public Category(String categoryName, String imgUrl, String blurb) {
-		this.categoryName = categoryName;
-		this.imgUrl = imgUrl;
-		this.blurb = blurb;
+	public Tag(String tagName) {
+		this.tagName = tagName;
 	}
 
 	@Override
@@ -70,11 +50,11 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Tag other = (Tag) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-	
+
 	
 }
