@@ -83,6 +83,15 @@ public class Vegetable {
 		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 	
+	public void addTag(Tag tag) {
+		this.tags.add(tag);
+	}
+
+	public void deleteTag(Tag tag) {
+		this.tags.remove(tag);
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,5 +113,4 @@ public class Vegetable {
 			return false;
 		return true;
 	}
-
 }

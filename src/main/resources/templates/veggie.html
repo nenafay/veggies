@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title th:text="'Generations and Journeys - '+ ${review.name}"></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <script src="main.js"></script>
+</head>
+<div class="container">
+    <div th:replace="header"></div>
+
+    <main>
+
+      <div id="veggieDetails">
+        <img th:src="@{${veggie.imgUrl}}" />
+        <h2 th:text = "${veggie.name}"></h2>
+        <p th:text="${veggie.text}"></p>
+      </div>
+      
+      <div class="bottomBlock">
+          <div th:if = "${review.trip}">
+            <a th:href = "@{/review(id=${review.trip.id})}"
+              th:text = "'Other reviews from our ' + ${review.trip.name} + ' trip...'"></a>
+          </div>
+     </div>
+     <div id="commentBlock">
+        <p th:text="'Tell us what you think of our review of ' + ${review.name} + '!'"></p>
+        <form target="_self">
+          <button id="commentBtn">leave a comment</button>
+          <input id="usernameField" type="text" placeholder="guest name" maxlength="12"/>
+          <input id="comment" placeholder="comment" max="300" min="10"/>
+          <input type="submit" value="submit">
+        </form>
+      </div>
+    </main>
+
+    <div th:replace="footer"></div>
+  </div>
+</body>
+</html>

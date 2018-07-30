@@ -45,7 +45,7 @@ public class VegReviewRestControllerTest {
 	public void ShouldBeOkForNewTag() throws URISyntaxException {
 		URI putUri = new URI("/veggie/add-tag");
 		
-		String json = "{\"veggieId\":\"9\", \"tagName\":"raw\"}";
+		String json = "{\"veggieId\":\"9\", \"tagName\":\"raw\"}";
 		
 		RequestEntity<String> request = RequestEntity.put(putUri)
 				.header("Content-Type", "application/json")

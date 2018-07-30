@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Generations and Journeys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+<div class ="container">
+    <div th:replace ="header"></div>
+
+    <main>
+    
+        <h1>Too Manny Veggies?!</h1>
+        <h2>There's no such thing as too many veggies!</h2>
+        <div class="textblock"> 
+            <p>This handy dandy little site is a useful way to figure out what to do with those fabulous vegetables, find recipes, plan a garden, and always eat well and enjoy!</p>
+        </div>
+        <div class="linksblock">
+            <a th:href = "@{/show-categories}">Vegetables by Variety</a>
+            <a th:href = "@{/show-vegetables}">All the Veggies Reviewed</a>
+        </div>
+        <section class="tagsForReviews">
+      		<h3>Find a Vegetable by its Tag:</h3>
+      		<div th:each="tag : ${tags}">
+      			<a th:href="@{/tag(id = ${tag.id})}"></a>
+      			<p th:text="${tag.name}"></p>
+      		</div>
+      </section>
+    </main>
+  
+</body>
+</html>
