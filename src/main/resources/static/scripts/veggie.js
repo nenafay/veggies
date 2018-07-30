@@ -15,12 +15,24 @@
 		getRecipes();
 	};
 	
+	function getVegTags(){
+		const xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 &&thiws.status -- 200){
+				vegTags = JSON.pars(xhr.response);
+				vegTagListRender();
+			}
+		}
+	}
+	
 	function toggleTags() {
-		const expandedTagView
 		const showTagsButton
+		const expandedTagView
+		const veggieModal
+		
 		
 		//if view tags button is clicked, toggle to expanded tag view. 
-		//if 
+		//if tagname is clicked, show connected veggies in modal.
 	}
 	
 })

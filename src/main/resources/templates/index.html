@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Generations and Journeys</title>
+  <title>Hooray for Veggies!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
 </head>
 <body>
 <div class ="container">
@@ -14,23 +15,40 @@
 
     <main>
     
-        <h1>Too Manny Veggies?!</h1>
+        <h1>Too Many Veggies?!</h1>
         <h2>There's no such thing as too many veggies!</h2>
-        <div class="textblock"> 
+        <section class="textblock"> 
             <p>This handy dandy little site is a useful way to figure out what to do with those fabulous vegetables, find recipes, plan a garden, and always eat well and enjoy!</p>
-        </div>
-        <div class="linksblock">
-            <a th:href = "@{/show-categories}">Vegetables by Variety</a>
-            <a th:href = "@{/show-vegetables}">All the Veggies Reviewed</a>
-        </div>
+        </section>
+        <section class="linksblock">
+        	<div>
+        		<img th:src="@{'/images/cruciferous.jpg}"/>
+            	<a th:href = "@{/show-categories}">Vegetables by Variety</a>
+            </div>
+            <div>
+            	 <img th:src="@{'/images/fruits-and-vegetables.jpg}"/>
+           		 <a th:href = "@{/show-vegetables}">All the Veggies Reviewed</a>
+           	</div>
+         </section>
         <section class="tagsForReviews">
       		<h3>Find a Vegetable by its Tag:</h3>
-      		<div th:each="tag : ${tags}">
-      			<a th:href="@{/tag(id = ${tag.id})}"></a>
-      			<p th:text="${tag.name}"></p>
+      		<div id=showTagsButton>Show Tags</div>
+      		 	<div th:each="tag : ${tags}">
+      				<a th:href="@{/tag(id = ${tag.id})}" th:text="${tag.name}"></a>
+      			</div>
+      	</section>
+      	<section class="veggieModal">
+      		<h4 th:text="'Veggies with the '+ ${tag.tagName} + 'Tag:'"></h4>
+      		<div th:each="veggie:${veggies}">
+      			<img th:src="@{'/images/' + ${veggie.imgUrl}}"/>
+      			<em>
+      				<a th:href="@{/show-vegetables}" th:text="${veggie.name}"></a>
+      			</em>
       		</div>
-      </section>
+      	</section>
+      	
+      	
     </main>
-  
+   <script src="veggie.js"></script>
 </body>
 </html>
