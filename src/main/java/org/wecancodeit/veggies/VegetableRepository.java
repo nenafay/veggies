@@ -10,6 +10,5 @@ public interface VegetableRepository extends CrudRepository<Vegetable, Long> {
 	
 	Collection<Vegetable> findByCategoryId(long id);
 
-	Collection<Vegetable> findByTagsId(long tagId);
 
 }
