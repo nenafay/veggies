@@ -24,19 +24,15 @@ public class VeggieRestController {
 	private TagRepository tagRepo;
 	
 	@Resource
-	private CommentRepository commentRepo;
+	private RecipeRepository recipeRepo;
 	
 	@GetMapping("/tags")
 	public Iterable<Tag> findAllTags(){
 		return tagRepo.findAll();
-	}
 	
-	@GetMapping("/tags/{id}")
-	public Iterable<Tag> findAllTagsByVeggieId(@PathVariable long veggieId) {
-		return tagRepo.findByVeggiesId(veggieId);
 	}
 
-	@PutMapping("/add-tag")
+	@PutMapping("/addTag/{id}")
 	public Iterable<Tag> addVeggieTag(@RequestBody TagUpdateRequest addTag){
 		Optional<Vegetable>vegOptional = veggieRepo.findById(addTag.veggieId);
 		
