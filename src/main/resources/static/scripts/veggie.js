@@ -18,8 +18,8 @@
 	function getVegTags(){
 		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(){
-			if(this.readyState == 4 &&thiws.status -- 200){
-				vegTags = JSON.pars(xhr.response);
+			if(this.readyState == 4 &&this.status == 200){
+				vegTags = JSON.parse(xhr.response);
 				vegTagListRender();
 			}
 		}
@@ -35,4 +35,30 @@
 		//if tagname is clicked, show connected veggies in modal.
 	}
 	
+	function addVegTag(){
+		const xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){}
+		// if button is clicked, open menu to add veg tag.
+		//html form to select suitable veggies and name tag.
+
+	}
+
+	function deleteVegTag(){
+		//removes tag from all veggies
+	}
+
+	function addRecipe(){
+
+	}
+
+	function getRecipes(){
+		const xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 &&this.status == 200){
+				vegTags = JSON.parse(xhr.response);
+				vegTagListRender();
+			}
+		}
+	}
+
 })
