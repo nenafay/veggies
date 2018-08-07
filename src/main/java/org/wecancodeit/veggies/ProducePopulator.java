@@ -19,89 +19,89 @@ public class ProducePopulator implements CommandLineRunner {
 	
 	@Override
 	public void run(String...args) throws Exception {
-		Category techFruit = new Category("Technically a Fruit", 
+		Category techFruit = categoryRepo.save(new Category("Technically a Fruit", 
 				"/images/r.jpg",
-				"Not a leaf. Not a root. Not a stem. Not a seed. Technically, it's a fruit. Doesn't matter to me! ");
+				"Not a leaf. Not a root. Not a stem. Not a seed. Technically, it's a fruit. Doesn't matter to me! "));
 		
-		Category roots = new Category("Root Vegetables", 
+		Category roots = categoryRepo.save(new Category("Root Vegetables", 
 				"/images/roots.jpg",
-				"Versatile, earthy, and easy to store.");
+				"Versatile, earthy, and easy to store."));
 		
-		Category squashMelon = new Category("Squashes & Melons", 
+		Category squashMelon = categoryRepo.save(new Category("Squashes & Melons", 
 				"/images/squash.jpg",
-				"Yes, they're related. Yes, they're also fruit, but that category was too huge!");
+				"Yes, they're related. Yes, they're also fruit, but that category was too huge!"));
 		
-		Category cruciferous = new Category("Cruciferous Vegetables", 
+		Category cruciferous = categoryRepo.save(new Category("Cruciferous Vegetables", 
 				"/images/cruciferous.jpg",
-				"Edible leaves, stems, and even flowers!");
+				"Edible leaves, stems, and even flowers!"));
 		
-		Tag raw = new Tag("Try me raw.");
+		Tag raw = tagRepo.save(new Tag("Try me raw."));
 		
-		Tag soupStew = new Tag ("I'm great in soups and stews.");
+		Tag soupStew = tagRepo.save(new Tag ("I'm great in soups and stews."));
 		
-		Tag roasted = new Tag ("Roast me!");
+		Tag roasted = tagRepo.save(new Tag ("Roast me!"));
 		
-		Tag saucy = new Tag ("I'm delicious in sauces.");
+		Tag saucy = tagRepo.save(new Tag ("I'm delicious in sauces."));
 		
-		Tag pickled = new Tag ("Pickle me!");
+		Tag pickled = tagRepo.save(new Tag ("Pickle me!"));
 		
-		Tag deepFried = new Tag ("You'll love me fried.");
+		Tag deepFried = tagRepo.save(new Tag ("You'll love me fried."));
 		
-		Tag dip = new Tag ("I make good dip");
+		Tag dip = tagRepo.save(new Tag ("I make good dip"));
 		
-		Tag sandwich = new Tag ("Slap me on a sandwich!");
+		Tag sandwich = tagRepo.save(new Tag ("Slap me on a sandwich!"));
 		
-		Tag salad = new Tag ("I go great in salads!");
+		Tag salad = tagRepo.save(new Tag ("I go great in salads!"));
 		
-		Tag stirFry = new Tag ("Try me in a stir-fry");
+		Tag stirFry = tagRepo.save(new Tag ("Try me in a stir-fry"));
 		
-		Vegetable eggplant = new Vegetable("Eggplant or Aubergine",
-				"/images/aubergine.jpg","text", techFruit, soupStew, roasted, dip);
+		Vegetable eggplant = veggieRepo.save(new Vegetable("Eggplant or Aubergine",
+				"/images/aubergine.jpg","text", techFruit, soupStew, roasted, dip));
 		
-		Vegetable bellPepper = new Vegetable("Bell Peppers",
-				"/images/bellpepper.jpg","text", techFruit, soupStew, roasted, dip, salad, raw, saucy, stirFry, sandwich);
+		Vegetable bellPepper = veggieRepo.save(new Vegetable("Bell Peppers",
+				"/images/bellpepper.jpg","text", techFruit, soupStew, roasted, dip, salad, raw, saucy, stirFry, sandwich));
 		
-		Vegetable broccoli = new Vegetable("Broccoli",
-				"/images/broccoli.jpg","text", cruciferous, soupStew, roasted, raw, salad, stirFry);
+		Vegetable broccoli = veggieRepo.save(new Vegetable("Broccoli",
+				"/images/broccoli.jpg","text", cruciferous, soupStew, roasted, raw, salad, stirFry));
 		
-		Vegetable butternut = new Vegetable("Butternut Squash",
-				"/images/butternut.jpg","text", squashMelon, soupStew, roasted, stirFry);
+		Vegetable butternut = veggieRepo.save(new Vegetable("Butternut Squash",
+				"/images/butternut.jpg","text", squashMelon, soupStew, roasted, stirFry));
 		
-		Vegetable cabbage = new Vegetable("Cabbage",
-				"/images/cabbage.jpg","text", cruciferous, soupStew, pickled, salad, stirFry);
+		Vegetable cabbage = veggieRepo.save(new Vegetable("Cabbage",
+				"/images/cabbage.jpg","text", cruciferous, soupStew, pickled, salad, stirFry));
 		
-		Vegetable cucumber = new Vegetable("Cucumber",
-				"/images/cucumber.jpg","text", squashMelon, raw, salad, dip, sandwich, pickled);
+		Vegetable cucumber = veggieRepo.save(new Vegetable("Cucumber",
+				"/images/cucumber.jpg","text", squashMelon, raw, salad, dip, sandwich, pickled));
 		
-		Vegetable delicata = new Vegetable("Delicata Squash",
-				"/images/delicata.jpg","text", squashMelon, soupStew, roasted);
+		Vegetable delicata = veggieRepo.save(new Vegetable("Delicata Squash",
+				"/images/delicata.jpg","text", squashMelon, soupStew, roasted));
 		
-		Vegetable hotPepper = new Vegetable("Hot Peppers",
-				"/images/hotpeppers.jpg","text", techFruit, soupStew, roasted, dip, salad, stirFry, pickled, saucy);
+		Vegetable hotPepper = veggieRepo.save(new Vegetable("Hot Peppers",
+				"/images/hotpeppers.jpg","text", techFruit, soupStew, roasted, dip, salad, stirFry, pickled, saucy));
 		
-		Vegetable kohlrabi = new Vegetable("Kohlrabi",
-				"/images/kohlrabi.jpg","text", cruciferous, salad, roasted);
+		Vegetable kohlrabi = veggieRepo.save(new Vegetable("Kohlrabi",
+				"/images/kohlrabi.jpg","text", cruciferous, salad, roasted));
 		
-		Vegetable onion = new Vegetable("Onion",
-				"/images/onion.jpg","text", roots, soupStew, roasted, dip, deepFried, stirFry, pickled, sandwich, salad);
+		Vegetable onion = veggieRepo.save(new Vegetable("Onion",
+				"/images/onion.jpg","text", roots, soupStew, roasted, dip, deepFried, stirFry, pickled, sandwich, salad));
 		
-		Vegetable radish = new Vegetable("Radish",
-				"/images/radish.jpg","text", roots, soupStew, roasted, raw, pickled, salad, stirFry);
+		Vegetable radish = veggieRepo.save(new Vegetable("Radish",
+				"/images/radish.jpg","text", roots, soupStew, roasted, raw, pickled, salad, stirFry));
 		
-		Vegetable romanesco = new Vegetable("Romanesco",
-				"/images/romanesco.jpg","text", cruciferous, soupStew, roasted, raw, salad, stirFry);
+		Vegetable romanesco = veggieRepo.save(new Vegetable("Romanesco",
+				"/images/romanesco.jpg","text", cruciferous, soupStew, roasted, raw, salad, stirFry));
 		
-		Vegetable santaClaus = new Vegetable("Santa Claus Melon",
-				"/images/santaclaus.jpg","text", squashMelon, raw, salad);
+		Vegetable santaClaus = veggieRepo.save(new Vegetable("Santa Claus Melon",
+				"/images/santaclaus.jpg","text", squashMelon, raw, salad));
 		
-		Vegetable sweetPotato = new Vegetable("Sweet Potato",
-				"/images/sweetpotato.jpg","text", roots, soupStew, roasted, stirFry, deepFried);
+		Vegetable sweetPotato = veggieRepo.save(new Vegetable("Sweet Potato",
+				"/images/sweetpotato.jpg","text", roots, soupStew, roasted, stirFry, deepFried));
 		
-		Vegetable tomato = new Vegetable("Tomato",
-				"/images/tomato.jpg","text", techFruit, soupStew, roasted, raw, salad, sandwich, saucy, dip);
+		Vegetable tomato = veggieRepo.save(new Vegetable("Tomato",
+				"/images/tomato.jpg","text", techFruit, soupStew, roasted, raw, salad, sandwich, saucy, dip));
 		
-		Vegetable watermelon = new Vegetable("Watermelon",
-				"/images/romanesco.jpg","text", squashMelon, raw);		
+		Vegetable watermelon = veggieRepo.save(new Vegetable("Watermelon",
+				"/images/romanesco.jpg","text", squashMelon, raw));		
 	}
 	
 }

@@ -10,5 +10,9 @@ public interface VegetableRepository extends CrudRepository<Vegetable, Long> {
 	
 	Collection<Vegetable> findByCategoryId(long id);
 
+	Collection<Vegetable> findByTagsContains(Tag tag);
+
+	Vegetable findByVeggieName(String veggieName);
+
 
 }

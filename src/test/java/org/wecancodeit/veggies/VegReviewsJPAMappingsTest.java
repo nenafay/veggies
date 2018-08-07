@@ -199,7 +199,8 @@ public class VegReviewsJPAMappingsTest {
 		entityManager.flush();
 		entityManager.clear();
 		
-		Collection<Vegetable> veggiesForTag = veggieRepo.findByTagsId(tagId);
+		Tag savedTag = tagRepo.findById(tagId).get();
+		Collection<Vegetable> veggiesForTag = veggieRepo.findByTagsContains(savedTag);
 		
 		assertThat(veggiesForTag, containsInAnyOrder(tomato, bellPepper));
 	}

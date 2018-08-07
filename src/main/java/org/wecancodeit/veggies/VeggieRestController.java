@@ -32,10 +32,40 @@ public class VeggieRestController {
 		return tagRepo.findAll();
 	}
 	
-	@PostMapping("/newTag/{name}")
-	public Iterable<Tag> addNewTagToVeggies(
-			@PathVariable("name") String veggieName){
-		Optional<Vegetable> veggieOptional = veggieRepo.findBy
+	//get veggies by tag 
+	@RequestMapping("/veggies/{tagName}")
+	public Collection<Vegetable>findAllVeggiesByTag(@PathVariable(value="tagName")String tagName) throws TagNotFoundException{
+		Optional<Tag> tagOptional = tagRepo.findByTagName(tagName);
+			if(!tagOptional.isPresent()) {
+				throw new TagNotFoundException();
+			}
+		Tag tag = tagOptional.get();	
+		Collection<Vegetable>veggies = veggieRepo.findByTagsContains(tag);
+		return veggies;
+	}
+	
+	@PostMapping("/newTag/{tagName}/{veggieName}")
+	public Vegetable addNewTagToVeggies(
+			@PathVariable(value="tagName") String tagName,
+			@PathVariable(value="veggieName")String veggieName
+			){
+		//get vegetable
+		Vegetable veggie = veggieRepo.findByVeggieName(veggieName);
+		//see if tag exists
+		Tag tag;
+		Optional<Tag>tagOptional = tagRepo.findByTagName(tagName);
+		//create tag if necessary
+		if(tagOptional.isPresent()) {
+			tag = tagOptional.get();
+		}
+		else {
+		tag = tagRepo.save(new Tag(tagName));
+		}
+		veggie.getTags().add(tag);
+		veggieRepo.save(veggie);
+	
+		
+		return veggie;
 	}
 }
 
