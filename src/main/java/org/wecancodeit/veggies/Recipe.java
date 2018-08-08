@@ -17,7 +17,7 @@ public class Recipe {
 	@GeneratedValue
 	private long id;
 	
-	private String recipeTitle ;
+	private String recipeName ;
 	private String userName;
 	
 	@Lob
@@ -34,8 +34,8 @@ public class Recipe {
 		return userName;
 	}
 	
-	public String getRecipeTitle() {
-		return recipeTitle;
+	public String getRecipeName() {
+		return recipeName;
 	}
 	
 	public String getRecipeText() {
@@ -50,11 +50,14 @@ public class Recipe {
 		
 	}
 
-	public Recipe(String userName, String recipeTitle, String recipeText, Vegetable...veggies) {
+	public Recipe(String userName, String recipeName, String recipeText, Vegetable...veggies) {
 		this.userName = userName;
-		this.recipeTitle = recipeTitle;
+		this.recipeName = recipeName;
 		this.recipeText = recipeText;
 		this.veggies = new HashSet<>(Arrays.asList(veggies));
+	}
+
+	public Recipe(String recipeName) {
 	}
 
 	@Override

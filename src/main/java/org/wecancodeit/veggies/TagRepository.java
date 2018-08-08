@@ -9,10 +9,12 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 
 	Optional<Tag> findFirstByTagName(String tagName);
 
-	Collection<Tag> findByVeggiesId(Optional<Vegetable> vegOptional);
+	Collection<Tag> findByVeggiesVeggieId(Optional<Vegetable> vegOptional);
 	
 	Collection<Tag> findByVeggiesContains(Vegetable veggie);
 
 	Optional<Tag> findByTagName(String tagName);
+
+	Tag findByTagId(long tagId);
 
 }

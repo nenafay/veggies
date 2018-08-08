@@ -14,5 +14,7 @@ public interface VegetableRepository extends CrudRepository<Vegetable, Long> {
 
 	Vegetable findByVeggieName(String veggieName);
 
+	Vegetable findByVeggieId(long veggieId);
+
 
 }

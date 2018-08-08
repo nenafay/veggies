@@ -34,7 +34,8 @@ public class VeggieRestController {
 	
 	//get veggies by tag 
 	@RequestMapping("/veggies/{tagName}")
-	public Collection<Vegetable>findAllVeggiesByTag(@PathVariable(value="tagName")String tagName) throws TagNotFoundException{
+	public Collection<Vegetable>findAllVeggiesByTag(
+			@PathVariable(value="tagName")String tagName) throws TagNotFoundException{
 		Optional<Tag> tagOptional = tagRepo.findByTagName(tagName);
 			if(!tagOptional.isPresent()) {
 				throw new TagNotFoundException();
@@ -45,7 +46,7 @@ public class VeggieRestController {
 	}
 	
 	@PostMapping("/newTag/{tagName}/{veggieName}")
-	public Vegetable addNewTagToVeggies(
+	public Vegetable addNewTagToVeggie(
 			@PathVariable(value="tagName") String tagName,
 			@PathVariable(value="veggieName")String veggieName
 			){
@@ -67,6 +68,52 @@ public class VeggieRestController {
 		
 		return veggie;
 	}
+	//add veggies to tag
+	@PostMapping("/tag/{tagId}/{veggieName}")
+	public Tag addVeggiesToTag(
+			@PathVariable(value="tagId") long tagId,
+			@PathVariable(value="veggieName")String veggieName
+			) {
+		//get tag
+		Tag tag = tagRepo.findByTagId(tagId);
+		//get vegetables
+		Vegetable veggie = veggieRepo.findByVeggieName(veggieName);
+		//add vegetables to tag
+		tag.getVeggies().add(veggie);
+		tagRepo.save(tag);
+		
+		return tag;
+	}
+	
+	@GetMapping("/allRecipes")
+	public Iterable<Recipe>recipes(){
+		return recipeRepo.findAll();
+	}
+	
+	//add new Recipe to Veggies//
+	@RequestMapping("/newRecipe/{recipeName}/{veggieId}")
+	public Vegetable addNewRecipeToVeggie(
+			@PathVariable(value="recipeName") String recipeName,
+			@PathVariable(value="veggieId") long veggieId
+			) {
+		//get vegetable
+		Vegetable veggie = veggieRepo.findByVeggieId(veggieId);
+		//see if tag exists
+		Recipe recipe;
+		Optional<Recipe>recipeOptional = recipeRepo.findByRecipeName(recipeName);
+		//create tag if necessary
+		if(recipeOptional.isPresent()) {
+			recipe = recipeOptional.get();
+		}
+		else {
+		recipe = recipeRepo.save(new Recipe(recipeName));
+		}
+		veggie.getRecipes().add(recipe);
+		veggieRepo.save(veggie);
+		
+		return veggie;
+	}
+	
 }
 
 

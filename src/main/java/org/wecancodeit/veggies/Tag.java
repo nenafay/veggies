@@ -12,7 +12,7 @@ public class Tag {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private long tagId;
 	
 	private String tagName;
 	
@@ -20,7 +20,7 @@ public class Tag {
 	private Collection<Vegetable> veggies;
 	
 	public long getId() {
-		return id;
+		return tagId;
 	}
 			
 	public String getTagName() {
@@ -33,12 +33,16 @@ public class Tag {
 	public Tag(String tagName) {
 		this.tagName = tagName;
 	}
+	
+	public Collection<Vegetable> getVeggies() {
+		return veggies;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (tagId ^ (tagId >>> 32));
 		return result;
 	}
 
@@ -51,10 +55,9 @@ public class Tag {
 		if (getClass() != obj.getClass())
 			return false;
 		Tag other = (Tag) obj;
-		if (id != other.id)
+		if (tagId != other.tagId)
 			return false;
 		return true;
 	}
-
 	
 }
