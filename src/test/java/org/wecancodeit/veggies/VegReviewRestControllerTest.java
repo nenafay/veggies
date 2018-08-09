@@ -57,7 +57,9 @@ public class VegReviewRestControllerTest {
 	}
 	@Test
 	public void ShouldBeOkForNewRecipe() {
-		
+		ResponseEntity<String> response = restTemplate.postForEntity("/newRecipe/recipeName/Tomato", null, String.class);
+		HttpStatus status = response.getStatusCode();
+		assertThat(status,is(HttpStatus.OK));
 	}
 	
 	
