@@ -20,13 +20,13 @@ public class VegReviewControllerTest {
 	private VegReviewController underTest;
 	
 	@Mock
-	private Vegetable veggie;
+	private Veggie veggie;
 	
 	@Mock
-	private Vegetable anotherVeggie;
+	private Veggie anotherVeggie;
 	
 	@Mock
-	private VegetableRepository veggieRepo;
+	private VeggieRepository veggieRepo;
 	
 	@Mock
 	private Category category;
@@ -75,7 +75,7 @@ public class VegReviewControllerTest {
 	
 	@Test
 	public void shouldAddAllVegReviewsToModel() {
-		Collection<Vegetable> allVeggies = Arrays.asList(veggie, anotherVeggie);
+		Collection<Veggie> allVeggies = Arrays.asList(veggie, anotherVeggie);
 		when(veggieRepo.findAll()).thenReturn(allVeggies);
 		
 		underTest.findAllVeggies(model);

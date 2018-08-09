@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class ProducePopulator implements CommandLineRunner {
 
 	@Resource
-	private VegetableRepository veggieRepo;
+	private VeggieRepository veggieRepo;
 	
 	@Resource
 	private CategoryRepository categoryRepo;
@@ -55,52 +55,52 @@ public class ProducePopulator implements CommandLineRunner {
 		
 		Tag stirFry = tagRepo.save(new Tag ("Try me in a stir-fry"));
 		
-		Vegetable eggplant = veggieRepo.save(new Vegetable("Eggplant or Aubergine",
+		Veggie eggplant = veggieRepo.save(new Veggie("Eggplant or Aubergine",
 				"/images/aubergine.jpg","text", techFruit, soupStew, roasted, dip));
 		
-		Vegetable bellPepper = veggieRepo.save(new Vegetable("Bell Peppers",
+		Veggie bellPepper = veggieRepo.save(new Veggie("Bell Peppers",
 				"/images/bellpepper.jpg","text", techFruit, soupStew, roasted, dip, salad, raw, saucy, stirFry, sandwich));
 		
-		Vegetable broccoli = veggieRepo.save(new Vegetable("Broccoli",
+		Veggie broccoli = veggieRepo.save(new Veggie("Broccoli",
 				"/images/broccoli.jpg","text", cruciferous, soupStew, roasted, raw, salad, stirFry));
 		
-		Vegetable butternut = veggieRepo.save(new Vegetable("Butternut Squash",
+		Veggie butternut = veggieRepo.save(new Veggie("Butternut Squash",
 				"/images/butternut.jpg","text", squashMelon, soupStew, roasted, stirFry));
 		
-		Vegetable cabbage = veggieRepo.save(new Vegetable("Cabbage",
+		Veggie cabbage = veggieRepo.save(new Veggie("Cabbage",
 				"/images/cabbage.jpg","text", cruciferous, soupStew, pickled, salad, stirFry));
 		
-		Vegetable cucumber = veggieRepo.save(new Vegetable("Cucumber",
+		Veggie cucumber = veggieRepo.save(new Veggie("Cucumber",
 				"/images/cucumber.jpg","text", squashMelon, raw, salad, dip, sandwich, pickled));
 		
-		Vegetable delicata = veggieRepo.save(new Vegetable("Delicata Squash",
+		Veggie delicata = veggieRepo.save(new Veggie("Delicata Squash",
 				"/images/delicata.jpg","text", squashMelon, soupStew, roasted));
 		
-		Vegetable hotPepper = veggieRepo.save(new Vegetable("Hot Peppers",
+		Veggie hotPepper = veggieRepo.save(new Veggie("Hot Peppers",
 				"/images/hotpeppers.jpg","text", techFruit, soupStew, roasted, dip, salad, stirFry, pickled, saucy));
 		
-		Vegetable kohlrabi = veggieRepo.save(new Vegetable("Kohlrabi",
+		Veggie kohlrabi = veggieRepo.save(new Veggie("Kohlrabi",
 				"/images/kohlrabi.jpg","text", cruciferous, salad, roasted));
 		
-		Vegetable onion = veggieRepo.save(new Vegetable("Onion",
+		Veggie onion = veggieRepo.save(new Veggie("Onion",
 				"/images/onion.jpg","text", roots, soupStew, roasted, dip, deepFried, stirFry, pickled, sandwich, salad));
 		
-		Vegetable radish = veggieRepo.save(new Vegetable("Radish",
+		Veggie radish = veggieRepo.save(new Veggie("Radish",
 				"/images/radish.jpg","text", roots, soupStew, roasted, raw, pickled, salad, stirFry));
 		
-		Vegetable romanesco = veggieRepo.save(new Vegetable("Romanesco",
+		Veggie romanesco = veggieRepo.save(new Veggie("Romanesco",
 				"/images/romanesco.jpg","text", cruciferous, soupStew, roasted, raw, salad, stirFry));
 		
-		Vegetable santaClaus = veggieRepo.save(new Vegetable("Santa Claus Melon",
+		Veggie santaClaus = veggieRepo.save(new Veggie("Santa Claus Melon",
 				"/images/santaclaus.jpg","text", squashMelon, raw, salad));
 		
-		Vegetable sweetPotato = veggieRepo.save(new Vegetable("Sweet Potato",
+		Veggie sweetPotato = veggieRepo.save(new Veggie("Sweet Potato",
 				"/images/sweetpotato.jpg","text", roots, soupStew, roasted, stirFry, deepFried));
 		
-		Vegetable tomato = veggieRepo.save(new Vegetable("Tomato",
+		Veggie tomato = veggieRepo.save(new Veggie("Tomato",
 				"/images/tomato.jpg","text", techFruit, soupStew, roasted, raw, salad, sandwich, saucy, dip));
 		
-		Vegetable watermelon = veggieRepo.save(new Vegetable("Watermelon",
+		Veggie watermelon = veggieRepo.save(new Veggie("Watermelon",
 				"/images/romanesco.jpg","text", squashMelon, raw));		
 	}
 	

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class VegReviewController {
 	
 	@Resource
-	VegetableRepository veggieRepo;
+	VeggieRepository veggieRepo;
 	
 	@Resource
 	CategoryRepository categoryRepo;
@@ -27,7 +27,7 @@ public class VegReviewController {
 	@RequestMapping("/veggie")
 	public String findOneVeggie (@RequestParam (value = "id") 
 			long id, Model model)throws VeggieNotFoundException {
-		Optional<Vegetable>veggie = veggieRepo.findById(id);
+		Optional<Veggie>veggie = veggieRepo.findById(id);
 		
 		if(veggie.isPresent()) {
 			model.addAttribute("veggies", veggie.get());

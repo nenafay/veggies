@@ -26,7 +26,7 @@ public class VegReviewControllerMockMVCTest {
 	private MockMvc mvc;
 	
 	@MockBean
-	private VegetableRepository veggieRepo;
+	private VeggieRepository veggieRepo;
 	
 	@MockBean
 	private CategoryRepository categoryRepo;
@@ -38,10 +38,10 @@ public class VegReviewControllerMockMVCTest {
 	private RecipeRepository recipeRepo;
 	
 	@Mock
-	private Vegetable veggie;
+	private Veggie veggie;
 	
 	@Mock
-	private Vegetable anotherVeggie;
+	private Veggie anotherVeggie;
 	
 	@Mock
 	private Category category;
@@ -56,14 +56,28 @@ public class VegReviewControllerMockMVCTest {
 	private Tag anotherTag;
 	
 	@Test
-	public void shouldRouteToSingleVegView() throws Exception {
-		long arbitraryVegReviewId = 1;
-		when(veggieRepo.findById(arbitraryVegReviewId)).thenReturn(Optional.of(veggie));
+	public void shouldRouteToSingleVeggieView() throws Exception {
+		long arbitraryVeggieId = 1;
+		when(veggieRepo.findById(arbitraryVeggieId)).thenReturn(Optional.of(veggie));
 		mvc.perform(get("/veggie?id=1")).andExpect(view().name(is("veggie")));
 	}
 	
 	@Test
-	public void shouldNotBeOkForSingleVegView() throws Exception {
+	public void shouldNotBeOkForSingleVeggieView() throws Exception {
 		mvc.perform(get("/veggie?id=1")).andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void shouldRouteToSingleCategoryView() throws Exception {
+		long arbitraryCategoryId = 1;
+		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
+		mvc.perform(get("/category?id=1")).andExpect(view().name(is("category")));
+	}
+	
+	@Test
+	public void shouldRouteToSingleTagView() throws Exception {
+		long arbitraryTagId = 1;
+		when(tagRepo.findById(arbitraryTagId)).thenReturn(Optional.of(tag));
+		mvc.perform(get("/tag?id=1")).andExpect(view().name(is("tag")));
 	}
 }

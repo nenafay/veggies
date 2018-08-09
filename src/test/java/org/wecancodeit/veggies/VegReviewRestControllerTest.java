@@ -45,7 +45,7 @@ public class VegReviewRestControllerTest {
 	public void ShouldBeOkForNewTag() throws URISyntaxException {
 		URI putUri = new URI("/veggie/add-tag");
 		
-		String json = "{\"veggieId\":\"9\", \"tagName\":\"raw\"}";
+		String json = "{\"id\":\"9\", \"tagName\":\"raw\"}";
 		
 		RequestEntity<String> request = RequestEntity.put(putUri)
 				.header("Content-Type", "application/json")
@@ -56,6 +56,13 @@ public class VegReviewRestControllerTest {
 		HttpStatus status = response.getStatusCode();
 		assertThat(status, is(HttpStatus.OK));
 		
+	}
+	
+	@Test
+	public void ShouldBeOkForAllRecipes() {
+		ResponseEntity<String> response = restTemplate.getForEntity("/recipes", String.class);
+		HttpStatus status = response.getStatusCode();
+		assertThat(status,is(HttpStatus.OK));
 	}
 	
 	

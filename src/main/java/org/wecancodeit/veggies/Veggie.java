@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Vegetable {
+public class Veggie {
 
 	@Id
 	@GeneratedValue
@@ -65,17 +65,17 @@ public class Vegetable {
 		return recipes;
 	}
 	
-	protected Vegetable() {	
+	protected Veggie() {	
 	}
 	
-	public Vegetable(String veggieName, String imgUrl, String text, Category category) {
+	public Veggie(String veggieName, String imgUrl, String text, Category category) {
 		this.veggieName = veggieName;
 		this.imgUrl = imgUrl;
 		this.text = text;
 		this.category = category;
 	}
 	
-	public Vegetable(String veggieName, String imgUrl, String text, Category category, Tag...tags) {
+	public Veggie(String veggieName, String imgUrl, String text, Category category, Tag...tags) {
 		this.veggieName = veggieName;
 		this.imgUrl = imgUrl;
 		this.text = text;
@@ -108,7 +108,7 @@ public class Vegetable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Vegetable other = (Vegetable) obj;
+		Veggie other = (Veggie) obj;
 		if (veggieId != other.veggieId)
 			return false;
 		return true;

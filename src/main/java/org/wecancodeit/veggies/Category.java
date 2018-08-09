@@ -22,7 +22,7 @@ public class Category {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "category")
-	private Collection<Vegetable> veggies;
+	private Collection<Veggie> veggies;
 
 	public long getId() {
 		return id;
@@ -40,7 +40,7 @@ public class Category {
 		return blurb;
 	}
 	
-	public Collection<Vegetable> getVeggies() {
+	public Collection<Veggie> getVeggies() {
 		return veggies;
 	}
 	

@@ -17,7 +17,7 @@ public class Tag {
 	private String tagName;
 	
 	@ManyToMany(mappedBy="tags")
-	private Collection<Vegetable> veggies;
+	private Collection<Veggie> veggies;
 	
 	public long getId() {
 		return tagId;
@@ -33,8 +33,8 @@ public class Tag {
 	public Tag(String tagName) {
 		this.tagName = tagName;
 	}
-	
-	public Collection<Vegetable> getVeggies() {
+
+	public Collection<Veggie> getVeggies() {
 		return veggies;
 	}
 
@@ -59,5 +59,6 @@ public class Tag {
 			return false;
 		return true;
 	}
+
 	
 }

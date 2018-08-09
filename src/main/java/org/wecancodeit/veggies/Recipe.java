@@ -24,7 +24,7 @@ public class Recipe {
 	private String recipeText;
 	
 	@ManyToMany
-	private Collection<Vegetable> veggies;
+	private Collection<Veggie> veggies;
 	
 	public long getId() {
 		return id;
@@ -42,7 +42,7 @@ public class Recipe {
 		return recipeText;
 	}
 	
-	public Collection<Vegetable> getVeggies(){
+	public Collection<Veggie> getVeggies(){
 		return veggies;
 	}
 	
@@ -50,7 +50,7 @@ public class Recipe {
 		
 	}
 
-	public Recipe(String userName, String recipeName, String recipeText, Vegetable...veggies) {
+	public Recipe(String userName, String recipeName, String recipeText, Veggie...veggies) {
 		this.userName = userName;
 		this.recipeName = recipeName;
 		this.recipeText = recipeText;

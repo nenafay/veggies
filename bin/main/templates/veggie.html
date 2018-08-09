@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title th:text="'Generations and Journeys - '+ ${review.name}"></title>
+  <title th:text="${veggie.veggieName}"></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-  <script src="main.js"></script>
+  <script src="veggie.js"></script>
 </head>
-<div class="container">
+<div class="bodyContainer" th:each="veggie: ${veggies}">
     <div th:replace="header"></div>
 
     <main>
 
       <div id="veggieDetails">
         <img th:src="@{${veggie.imgUrl}}" />
-        <h2 th:text = "${veggie.name}"></h2>
+        <h2 th:text = "${veggie.veggieName}"></h2>
         <p th:text="${veggie.text}"></p>
       </div>
       
       <div class="bottomBlock">
-          <div th:if = "${review.trip}">
+          <div th:if = "${veggie.}">
             <a th:href = "@{/review(id=${review.trip.id})}"
               th:text = "'Other reviews from our ' + ${review.trip.name} + ' trip...'"></a>
           </div>
