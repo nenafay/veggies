@@ -35,34 +35,29 @@ public class VegReviewRestControllerTest {
 	}
 	
 	@Test
-	public void shouldBeOkForVeggieTags() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/tags/9", String.class);
+	public void shouldBeOkForAllVeggiesByTag() {
+		ResponseEntity<String> response = restTemplate.getForEntity("/veggies/Try me raw.", String.class);
 		HttpStatus status = response.getStatusCode();
 		assertThat(status,is(HttpStatus.OK));
 	}
 	
 	@Test
-	public void ShouldBeOkForNewTag() throws URISyntaxException {
-		URI putUri = new URI("/veggie/add-tag");
-		
-		String json = "{\"id\":\"9\", \"tagName\":\"raw\"}";
-		
-		RequestEntity<String> request = RequestEntity.put(putUri)
-				.header("Content-Type", "application/json")
-				.accept(MediaType.APPLICATION_JSON).body(json);
-		
-		ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-		
+	public void ShouldBeOkForNewVeggieTag() throws URISyntaxException {
+		ResponseEntity<String> response = restTemplate.postForEntity("/newTag/raw/Tomato", null, String.class);
 		HttpStatus status = response.getStatusCode();
-		assertThat(status, is(HttpStatus.OK));
+		assertThat(status,is(HttpStatus.OK));
 		
 	}
 	
 	@Test
-	public void ShouldBeOkForAllRecipes() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/recipes", String.class);
+	public void ShouldBeOkForRecipesByVeggie() {
+		ResponseEntity<String> response = restTemplate.getForEntity("/recipes/Tomato", String.class);
 		HttpStatus status = response.getStatusCode();
 		assertThat(status,is(HttpStatus.OK));
+	}
+	@Test
+	public void ShouldBeOkForNewRecipe() {
+		
 	}
 	
 	

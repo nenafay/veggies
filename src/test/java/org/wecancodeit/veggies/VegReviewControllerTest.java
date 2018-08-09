@@ -69,7 +69,7 @@ public class VegReviewControllerTest {
 		when(veggieRepo.findById(arbitraryVeggieId)).thenReturn(Optional.of(veggie));
 		
 		underTest.findOneVeggie(arbitraryVeggieId, model);
-		verify(model).addAttribute("veggies", veggie);
+		verify(model).addAttribute("veggie", veggie);
 	
 	}
 	

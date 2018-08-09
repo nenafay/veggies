@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Recipe {
@@ -23,8 +24,8 @@ public class Recipe {
 	@Lob
 	private String recipeText;
 	
-	@ManyToMany
-	private Collection<Veggie> veggies;
+	@ManyToOne
+	private Veggie veggie;
 	
 	public long getId() {
 		return id;
@@ -42,19 +43,19 @@ public class Recipe {
 		return recipeText;
 	}
 	
-	public Collection<Veggie> getVeggies(){
-		return veggies;
+	public Veggie getVeggie(){
+		return veggie;
 	}
 	
 	protected Recipe() {
 		
 	}
 
-	public Recipe(String userName, String recipeName, String recipeText, Veggie...veggies) {
+	public Recipe(String userName, String recipeName, String recipeText, Veggie veggie) {
 		this.userName = userName;
 		this.recipeName = recipeName;
 		this.recipeText = recipeText;
-		this.veggies = new HashSet<>(Arrays.asList(veggies));
+		this.veggie = veggie;
 	}
 
 	public Recipe(String recipeName) {

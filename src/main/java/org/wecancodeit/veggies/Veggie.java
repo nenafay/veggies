@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,7 +35,7 @@ public class Veggie {
 	private Collection<Tag> tags;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "veggies")
+	@OneToMany(mappedBy = "veggie")
 	private Collection<Recipe> recipes;
 	
 	public long getId() {

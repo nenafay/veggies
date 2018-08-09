@@ -244,25 +244,15 @@ public class VegReviewsJPAMappingsTest {
 	}
 	
 	@Test
-	public void shouldEstablishRecipesToVegetablesRelationship() {
+	public void shouldEstablishRecipesToVegetableRelationship() {
 		Category roots = categoryRepo.save(new Category
 				("root vegetables", "imgUrl", "blurg"));
-		Category techFruit = categoryRepo.save(new Category
-				("technically fruit", "imgUrl", "blurb"));
-		Category cruciferous = categoryRepo.save(new Category 
-				("Cruciferous Vegetables", "imgUrl", "blurb"));
 		
-		Veggie tomato = veggieRepo.save(new Veggie
-				("tomato", "imgUrl", "text", techFruit));
-		Veggie bellPepper = veggieRepo.save(new Veggie
-				("bellPepper", "imgUrl", "text", techFruit));
 		Veggie carrot = veggieRepo.save(new Veggie
 				("Carrot", "imgUrl", "text", roots));
-		Veggie kale = veggieRepo.save(new Veggie
-				("kale", "imgUrl", "text", cruciferous));
-		
-		Recipe minestrone = recipeRepo.save(new Recipe("user name", "Minestrone Soup", "recipe", carrot, kale, tomato, bellPepper));
-		Recipe stirFry = recipeRepo.save(new Recipe("user name", "Stir Fry", "recipe", carrot, bellPepper, kale));
+	
+		Recipe minestrone = recipeRepo.save(new Recipe("user name", "Minestrone Soup", "recipe", carrot));
+		Recipe stirFry = recipeRepo.save(new Recipe("user name", "Stir Fry", "recipe", carrot));
 		
 		long veggieId = carrot.getId();
 		

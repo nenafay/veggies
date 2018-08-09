@@ -57,9 +57,9 @@ public class VegReviewControllerMockMVCTest {
 	
 	@Test
 	public void shouldRouteToSingleVeggieView() throws Exception {
-		long arbitraryVeggieId = 1;
+		long arbitraryVeggieId = 19;
 		when(veggieRepo.findById(arbitraryVeggieId)).thenReturn(Optional.of(veggie));
-		mvc.perform(get("/veggie?id=1")).andExpect(view().name(is("veggie")));
+		mvc.perform(get("/veggie?id=19")).andExpect(view().name(is("veggie")));
 	}
 	
 	@Test

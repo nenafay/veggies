@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/veggie")
 public class VeggieRestController {
 	
 	@Resource
@@ -26,14 +25,14 @@ public class VeggieRestController {
 	
 	@Resource
 	private RecipeRepository recipeRepo;
-	
-	@GetMapping("/allTags")
-	public Iterable<Tag> allTags(){
+
+	@GetMapping("/tags")
+	public Iterable<Tag> tags(){
 		return tagRepo.findAll();
 	}
 	
 	//get veggies by tag 
-	@RequestMapping("/veggies/{tagName}")
+	@GetMapping("/veggies/{tagName}")
 	public Collection<Veggie>findAllVeggiesByTag(
 			@PathVariable(value="tagName")String tagName) throws TagNotFoundException{
 		Optional<Tag> tagOptional = tagRepo.findByTagName(tagName);
@@ -49,9 +48,14 @@ public class VeggieRestController {
 	public Veggie addNewTagToVeggie(
 			@PathVariable(value="tagName") String tagName,
 			@PathVariable(value="veggieName")String veggieName
-			){
+			) throws VeggieNotFoundException{
 		//get vegetable
-		Veggie veggie = veggieRepo.findByVeggieName(veggieName);
+		Optional<Veggie> veggieOptional = veggieRepo.findByVeggieName(veggieName);
+		if(!veggieOptional.isPresent()) {
+			throw new VeggieNotFoundException();
+		}
+		Veggie veggie = veggieOptional.get();
+		
 		//see if tag exists
 		Tag tag;
 		Optional<Tag>tagOptional = tagRepo.findByTagName(tagName);
@@ -77,7 +81,7 @@ public class VeggieRestController {
 		//get tag
 		Tag tag = tagRepo.findByTagId(tagId);
 		//get vegetables
-		Veggie veggies = veggieRepo.findByVeggieName(veggieName);
+		Veggie veggies = veggieRepo.findByVeggieName(veggieName).get();
 		//add vegetables to tag
 		tag.getVeggies().add(veggies);
 		tagRepo.save(tag);
@@ -85,9 +89,12 @@ public class VeggieRestController {
 		return tag;
 	}
 	
-	@GetMapping("/allRecipes")
-	public Iterable<Recipe>recipes(){
-		return recipeRepo.findAll();
+	@GetMapping("/recipes/{veggieName}")
+	public Collection<Recipe>findAllRecipesByVeggie(
+			@PathVariable(value="veggieName")String veggieName){
+		Veggie veggie = veggieRepo.findByVeggieName(veggieName).get();
+		Collection<Recipe>recipes = recipeRepo.findByVeggie(veggie);
+		return recipes;
 	}
 	
 	//add new Recipe to Veggies//
@@ -97,7 +104,7 @@ public class VeggieRestController {
 			@PathVariable(value="veggieName")String veggieName
 				){
 			//get vegetable
-			Veggie veggie = veggieRepo.findByVeggieName(veggieName);
+			Veggie veggie = veggieRepo.findByVeggieName(veggieName).get();
 			//see if tag exists
 			Recipe recipe;
 			Optional<Recipe>recipeOptional = recipeRepo.findByRecipeName(recipeName);

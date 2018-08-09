@@ -13,7 +13,7 @@ public interface VeggieRepository extends CrudRepository<Veggie, Long> {
 
 	Collection<Veggie> findByTagsContains(Tag tag);
 
-	Veggie findByVeggieName(String veggieName);
+	Optional<Veggie> findByVeggieName(String veggieName);
 
 	Optional<Veggie> findByVeggieId(long veggieId);
 

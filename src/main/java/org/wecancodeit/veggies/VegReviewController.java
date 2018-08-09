@@ -30,7 +30,7 @@ public class VegReviewController {
 		Optional<Veggie>veggie = veggieRepo.findById(id);
 		
 		if(veggie.isPresent()) {
-			model.addAttribute("veggies", veggie.get());
+			model.addAttribute("veggie", veggie.get());
 			return("veggie");
 		}
 		throw new VeggieNotFoundException();
