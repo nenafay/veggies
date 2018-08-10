@@ -36,11 +36,11 @@ public class VegReviewController {
 		throw new VeggieNotFoundException();
 	}
 	
-	@RequestMapping("/show-veggies")
-	public String findAllVeggies(Model model) {
-		model.addAttribute("veggies", veggieRepo.findAll());
-		return("veggies");
-	}
+//	@RequestMapping("/show-veggies")
+//	public String findAllVeggies(Model model) {
+//		model.addAttribute("veggies", veggieRepo.findAll());
+//		return("veggies");
+//	}
 	
 	@RequestMapping("/category")
 	public String findOneCategory (@RequestParam (value = "id")

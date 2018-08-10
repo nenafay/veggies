@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Veggies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Corben|Josefin+Slab" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+    <div id="bodyContainer" th:each="category: ${veggies}">
+    <div th:replace="header"></div>
+    <main>
+        <div id="multiDisplayBlock">
+            <div id=veggieGrid th:each="veggie: ${category.veggieName}">
+                <img id="mainImg" th:src="@{${veggie.category.imgUrl}}" />
+                <a th:href="@{/veggie/id?=}">
+                    <h3 th:text = "${veggie.veggieName}"/>
+                </a>
+            </div>
+        </div> 
+
+        <div id="tagBlock">
+            <div id="tagForm">
+                <h3>Add a Tag</h3>
+                <form id="newTag" name="newTagForm" onsubmit="addTag(event)"/> 
+                    <input type="text" name="tagName" placeholder="Tag Name"/> 
+                    <input type="checkbox" name="veggies">
+              <!-- use ajax to pull all veggies -->
+                <button id="submitTag">
+                  <input type="submit" value="Add Tag"/>
+                </button>
+              </form>
+            </div>
+          </div>
+        </main>
+        <div th:replace="footer"></div>
+    </div>
+</body>
+    <script src="veggie.js"></script>
+</html>
