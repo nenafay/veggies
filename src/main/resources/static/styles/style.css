@@ -7,7 +7,8 @@
 }
 
 :root{
-    --main: rgb(8, 32, 4);
+    --main1: rgb(8, 32, 4);
+    --main2: rgb(200, 200, 200);
     --accent1: rgb(36, 134, 23);
     --accent2: rgb(247, 233, 40);
     --headings: 'Josefin Slab', 'American Typewriter', serif;
@@ -17,6 +18,66 @@
     display: block;
     max-width: 800px;
     width: 90%;
+    background: var(--main2);
+    margin: 2em auto;
+    padding: 2em;
+    align-items: Left;
 }
+
+h1{
+    font-family: var(--headings);
+    color: var(--accent1);
+    text-shadow: 2px 2px var(--accent2);
+}
+
+.singleDisplayBlock{
+    display: grid;
+    grid-template-columns: 2 2fr 1fr;
+    grid-template-rows: 4;
+    grid-gap: 1em;
+    width: 80%;
+    align-items: center;
+}
+
+.singleDisplayBlock .main{
+    grid-area: 1, 1, 2, 3;
+    background-color: var(--main1);
+    
+}
+
+.mainImg{
+    border: solid, var(--accent2) 4px;
+    border-radius: 10rem;
+}
+
+.singleDisplayBlock>h2{
+    grid-area: 3, 1, 4, 2;
+    font-family: var(--headings);
+
+}
+
+#veggieTags{
+    grid-area: 1, 2, 3, 3;
+    color: var(--main1);
+    text-decoration: none;
+}
+
+.secondImg{
+    grid-area: 3, 2, 4, 3;
+    filter: inherit var(--accent1);
+    border: solid, var(--main1) 4 px;
+    border-radius: 8rem;
+    object-fit:contain;
+}
+
+.singleDisplayBlock>p{
+    grid-area: 4, 1, 5, 3;
+    color: var(--main1);
+    text-align: left;
+    line-height: 1.8em;
+}
+
+
+
 
 
