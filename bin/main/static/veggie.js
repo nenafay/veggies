@@ -1,7 +1,5 @@
-(function (){
 	
 let vegTags = [ ];
-let veggieId = document.querySelector([])
 	
 	const vegId = document.querySelector('#veggieId').textContent;
 	
@@ -41,8 +39,8 @@ let veggieId = document.querySelector([])
 	function addRecipe(event){
 		event.preventDefault();
 
-let recipeName = querySelector("[name=recipeName]").value;
-let veggieName = querySelector("[name=veggieName]").value;
+        let recipeName = document.querySelector("[name=recipeName]").value;
+        let veggieName = document.querySelector("[name=veggieName]").value;
 
 		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(){
@@ -65,4 +63,3 @@ let veggieName = querySelector("[name=veggieName]").value;
 		}
 	}
 
-})

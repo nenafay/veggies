@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VeggieRestController {
+	@Resource
+	private CategoryRepository categoryRepo;
 	
 	@Resource
 	private VeggieRepository veggieRepo;
