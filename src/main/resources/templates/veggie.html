@@ -5,28 +5,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title th:text="${veggie.veggieName}"></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Corben|Josefin+Slab" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-  <script src="veggie.js"></script>
 </head>
-<div class="bodyContainer" th:each="veggie: ${veggies}">
+<div id="bodyContainer" th:each="veggie: ${veggies}">
     <div th:replace="header"></div>
-
     <main>
-
-      <div class="veggiesForTag">
-        <div id= "veggieLinks" th:each="@{/tag(id=${tag.veggie.id">
-          <img th:src="@{${veggie.imgUrl}}" />
-          <h2 th:text = "${veggie.veggieName}"></h2>
+      <div id="singleDisplayBlock">
+        <img th:src="@{${veggie.imgUrl}}" />
+        <h2 th:text = "${veggie.veggieName}"></h2>
         <p th:text="${veggie.text}"></p>
+        <img th:src="@{${veggie.category.imgurl}}"/>
+      </div>
+      <div id="veggiesForTag">
+        <div class= "veggieLinks" th:each="@{/tag(id=${tag.veggie.id">
+        
       </div>
       
      </div>
      <div id="recipeSubmission">
+        <form class="newRecipe" id=newRecipeForm onsubmit="addRecipe(event)">
+          <input type="hidden" name="veggieName" th:value="${veggie.name}"/>
+          <input type="text" name="userName" placeholder="user name"/>
+          <input type="text" name="recipeName" placeholder="recipe name"/>
+          <input type="text" name="recipeText" placeholder="text"/>
+          <button id="submitAdd">
+            <input type="submit" value="Add Recipe"/>
+          </button>
         </form>
       </div>
+      <div id="recipeBlock">
+        <div class="recipeCard">
+          <!-- show content using ajax.  -->
+          <!-- click and expand to show full recipe -->
+        </div>
+      </div>
     </main>
-
     <div th:replace="footer"></div>
   </div>
 </body>
+<!-- <script src="veggie.js"></script> -->
 </html>
