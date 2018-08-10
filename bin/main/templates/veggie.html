@@ -8,28 +8,29 @@
   <link href="https://fonts.googleapis.com/css?family=Corben|Josefin+Slab" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
-<div id="bodyContainer" th:each="veggie: ${veggies}">
+<body>
+  <div id="bodyContainer">
     <div th:replace="header"></div>
     <main>
       <div id="singleDisplayBlock">
-        <img th:src="@{${veggie.imgUrl}}" />
+        <div id="main">
+          <img id="mainImg" th:src="@{${veggie.imgUrl}}" />
+        </div>
+        <div class= "veggieTags">
+          <!-- Tags populated via ajax -->
+        </div>
         <h2 th:text = "${veggie.veggieName}"></h2>
         <p th:text="${veggie.text}"></p>
-        <img th:src="@{${veggie.category.imgurl}}"/>
+        <img id="secondImg" th:src="@{${veggie.category.imgUrl}}"/>
       </div>
-      <div id="veggiesForTag">
-        <div class= "veggieLinks" th:each="@{/tag(id=${tag.veggie.id">
-        
-      </div>
-      
-     </div>
-     <div id="recipeSubmission">
-        <form class="newRecipe" id=newRecipeForm onsubmit="addRecipe(event)">
-          <input type="hidden" name="veggieName" th:value="${veggie.name}"/>
+
+      <div id="recipeSubmission">
+        <form class="newRecipe" id="newRecipeForm" onsubmit="addRecipe(event)"/>
+          <input type="hidden" name="veggieName" th:value="${veggie.veggieName}"/>
           <input type="text" name="userName" placeholder="user name"/>
           <input type="text" name="recipeName" placeholder="recipe name"/>
           <input type="text" name="recipeText" placeholder="text"/>
-          <button id="submitAdd">
+          <button id="submitRecipe">
             <input type="submit" value="Add Recipe"/>
           </button>
         </form>

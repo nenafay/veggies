@@ -105,16 +105,7 @@ public class VeggieRestController {
 				){
 			//get vegetable
 			Veggie veggie = veggieRepo.findByVeggieName(veggieName).get();
-			//see if tag exists
-			Recipe recipe;
-			Optional<Recipe>recipeOptional = recipeRepo.findByRecipeName(recipeName);
-			//create tag if necessary
-			if(recipeOptional.isPresent()) {
-				recipe = recipeOptional.get();
-			}
-			else {
-			recipe = recipeRepo.save(new Recipe(recipeName));
-			}
+			Recipe recipe = recipeRepo.save(new Recipe(recipeName));
 			veggie.getRecipes().add(recipe);
 			veggieRepo.save(veggie);
 		

@@ -1,13 +1,13 @@
 (function (){
 	
-	vegTags = [];
+let vegTags = [ ];
+let veggieId = document.querySelector([])
 	
 	const vegId = document.querySelector('#veggieId').textContent;
 	
 	start();
 	
 	function start(){
-		toggleTags();
 		getVegTags();
 		addVegTag();
 		deleteVegTag();
@@ -20,19 +20,9 @@
 		xhr.onreadystatechange = function(){
 			if(this.readyState == 4 &&this.status == 200){
 				vegTags = JSON.parse(xhr.response);
-				vegTagListRender();
+				vegTagsRender(vegTags);
 			}
 		}
-	}
-	
-	function toggleTags() {
-		const showTagsButton
-		const expandedTagView
-		const veggieModal
-		
-		
-		//if view tags button is clicked, toggle to expanded tag view. 
-		//if tagname is clicked, show connected veggies in modal.
 	}
 	
 	function addVegTag(){
@@ -47,8 +37,22 @@
 		//removes tag from all veggies
 	}
 
-	function addRecipe(){
 
+	function addRecipe(event){
+		event.preventDefault();
+
+let recipeName = querySelector("[name=recipeName]").value;
+let veggieName = querySelector("[name=veggieName]").value;
+
+		const xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 &&this.status == 200){
+				vegTags = JSON.parse(xhr.response);
+				recipeRender();
+			}
+		};
+		xhr.open("POST", `/newRecipe/${recipeName}/${veggieName}`);
+		xhr.send();
 	}
 
 	function getRecipes(){

@@ -58,6 +58,10 @@ public class Veggie {
 		return category.getCategoryName();
 	}
 	
+	public Category getCategory() {
+		return category;
+	}
+	
 	public Collection<Tag> getTags() {
 		return tags;	
 	}

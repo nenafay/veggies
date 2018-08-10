@@ -32,7 +32,7 @@ public class Category {
 		return categoryName;
 	}
 	
-	public String getImageUrl() {
+	public String getImgUrl() {
 		return imgUrl;
 	}
 	

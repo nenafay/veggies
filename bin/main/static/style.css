@@ -26,7 +26,7 @@
 
 h1{
     font-family: var(--headings);
-    color: var(--accent1);
+    color: var(--main1);
     text-shadow: 2px 2px var(--accent2);
 }
 
@@ -48,12 +48,13 @@ h1{
 .mainImg{
     border: solid, var(--accent2) 4px;
     border-radius: 10rem;
+    object-fit: contain;
 }
 
 .singleDisplayBlock>h2{
     grid-area: 3, 1, 4, 2;
     font-family: var(--headings);
-
+    color: var(--accent1)
 }
 
 #veggieTags{
@@ -62,6 +63,7 @@ h1{
     text-decoration: none;
 }
 
+.multiDisplayblock>img, 
 .secondImg{
     grid-area: 3, 2, 4, 3;
     filter: inherit var(--accent1);
@@ -76,6 +78,21 @@ h1{
     text-align: left;
     line-height: 1.8em;
 }
+
+.recipeSubmission{
+    display: grid;
+    
+}
+
+.multiDisplayBlock{
+    display: grid;
+    grid-template-columns: 3 1fr;
+    grid-gap: 1em;
+    width: 80%;
+    align-items: center;
+}
+
+
 
 
 
